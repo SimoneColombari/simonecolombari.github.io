@@ -131,8 +131,13 @@ body {
 }
 
 .block p {
+  color: #ff6f00;
   font-size: 1.1em;
   line-height: 1.6;
+  color: #ff6f00;
+text-shadow: 0 0 5px #ff6f00;
+
+
 }
 
 @keyframes fadeInUp {
