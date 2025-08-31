@@ -1,0 +1,242 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Contatti</title>
+  <style>
+    body {
+      margin: 0;
+      font-family: 'Segoe UI', sans-serif;
+      background-color: #0a0a23;
+      color: #ff6f00;
+      overflow-x: hidden;
+    }
+
+    nav {
+      background-color: rgba(0, 0, 0, 0.85);
+      padding: 15px 30px;
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      z-index: 1000;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      box-sizing: border-box;
+    }
+
+    nav .left, nav .right {
+      display: flex;
+      align-items: center;
+    }
+
+    nav a {
+      color: #ff6f00;
+      text-decoration: none;
+      margin: 0 15px;
+      font-weight: bold;
+      font-size: 1.1em;
+    }
+
+    nav a:hover {
+      text-decoration: underline;
+    }
+
+    canvas {
+      position: fixed;
+      top: 0;
+      left: 0;
+      z-index: -1;
+    }
+
+    .container {
+      margin-top: 120px;
+      padding: 40px;
+      max-width: 600px;
+      margin-left: auto;
+      margin-right: auto;
+      background-color: rgba(255, 255, 255, 0.05);
+      border-radius: 10px;
+      box-shadow: 0 0 20px rgba(255, 111, 0, 0.3);
+    }
+
+    h1 {
+      text-align: center;
+      color: #ff6f00;
+    }
+
+    label {
+      display: block;
+      margin-top: 20px;
+      font-weight: bold;
+      color: #ff6f00;
+    }
+
+    input[type="range"] {
+      width: 100%;
+      margin-top: 10px;
+    }
+
+    #interestLabel {
+      margin-top: 15px;
+      font-size: 1.3em;
+      text-align: center;
+      color: #ff6f00;
+    }
+
+    .cta-button {
+      background-color: #ff6f00;
+      color: white;
+      padding: 10px 20px;
+      border-radius: 25px;
+      text-decoration: none;
+      font-weight: bold;
+      display: inline-block;
+      margin-top: 20px;
+      transition: background-color 0.3s;
+    }
+
+    .cta-button:hover {
+      background-color: white;
+      color: #ff6f00;
+    }
+
+    button {
+      background-color: #ff6f00;
+      color: white;
+      border: none;
+      padding: 6px 12px;
+      border-radius: 20px;
+      cursor: pointer;
+      margin-left: 10px;
+      font-weight: bold;
+    }
+
+    button:hover {
+      background-color: white;
+      color: #ff6f00;
+    }
+
+    @media screen and (max-width: 600px) {
+      nav {
+        flex-direction: column;
+        align-items: flex-start;
+      }
+
+      nav .right {
+        margin-top: 10px;
+        flex-wrap: wrap;
+      }
+
+      nav a {
+        margin: 5px 10px;
+      }
+    }
+  </style>
+</head>
+<body>
+  <nav>
+    <div class="left">
+      <a href="whoami.html">🏠 Home</a>
+    </div>
+    <div class="right">
+      <a href="whoami.html">Who Am I</a>
+      <a href="progetti.html">Progetti</a>
+      <a href="usa.html">USA</a>
+      <a href="contatti.html">Contatti</a>
+    </div>
+  </nav>
+
+  <canvas id="interactive-bg"></canvas>
+
+  <div class="container">
+    <h1>Il tuo livello di interesse</h1>
+    <label for="interestRange">Seleziona quanto sei interessato:</label>
+    <input type="range" id="interestRange" min="0" max="100" value="50" />
+    <div id="interestLabel">Curioso 🙂</div>
+  </div>
+
+  <div class="container">
+    <h1>Contatti professionali</h1>
+    <p>Se sei un'azienda interessata a collaborare con me, ecco come puoi contattarmi direttamente:</p>
+
+    <label>Email:</label>
+    <p>
+      <span id="email">mcsl.simone@gmail.com</span>
+      <button onclick="copyEmail()">📋 Copia</button>
+    </p>
+
+    <label>Telefono:</label>
+    <p><a href="tel:+393921638193">392 163 8193</a></p>
+
+    <label>Preferenze di contatto:</label>
+    <p>Preferisco essere contattato via email. Se vuoi fissare una call o un incontro, scrivimi e ti risponderò entro 24 ore nei giorni lavorativi.</p>
+  </div>
+
+  <script>
+    // Canvas interattivo
+    const canvas = document.getElementById('interactive-bg');
+    const ctx = canvas.getContext('2d');
+    canvas.width = window.innerWidth;
+    canvas.height = window.innerHeight;
+
+    let mouse = { x: canvas.width / 2, y: canvas.height / 2 };
+
+    document.addEventListener('mousemove', e => {
+      mouse.x = e.clientX;
+      mouse.y = e.clientY;
+    });
+
+    function draw() {
+      ctx.clearRect(0, 0, canvas.width, canvas.height);
+      ctx.beginPath();
+      ctx.arc(mouse.x, mouse.y, 50, 0, Math.PI * 2);
+      ctx.fillStyle = 'rgba(255, 111, 0, 0.5)';
+      ctx.fill();
+      requestAnimationFrame(draw);
+    }
+    draw();
+
+    // Slider e salvataggio
+    const range = document.getElementById('interestRange');
+    const label = document.getElementById('interestLabel');
+
+    function getInteresseTestuale(value) {
+      if (value < 20) return 'Non interessato 😢';
+      else if (value < 40) return 'Distratto 😕';
+      else if (value < 60) return 'Curioso 🙂';
+      else if (value < 80) return 'Coinvolto 😃';
+      else return 'Molto interessato 🤩';
+    }
+
+    range.addEventListener('input', () => {
+      const value = parseInt(range.value);
+      label.textContent = getInteresseTestuale(value);
+    });
+
+    range.addEventListener('change', () => {
+      const value = parseInt(range.value);
+      const interesseTestuale = getInteresseTestuale(value);
+
+      fetch("https://script.google.com/macros/s/AKfycbzXxOoAHC5wZ0e8zIrazEo8EHl-GwMu099PhOmK_d8x37a-kAMEBLIi6yHiXcfxbBW2wQ/exec?interesse=" + encodeURIComponent(interesseTestuale))
+        .then(response => response.text())
+        .then(data => {
+          console.log("Interesse salvato:", data);
+        })
+        .catch(error => {
+          console.error("Errore nel salvataggio:", error);
+        });
+    });
+
+    // Copia email
+    function copyEmail() {
+      const email = document.getElementById("email").textContent;
+      navigator.clipboard.writeText(email).then(() => {
+        alert("Email copiata negli appunti!");
+      });
+    }
+  </script>
+</body>
+</html>
