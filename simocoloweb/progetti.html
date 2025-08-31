@@ -15,34 +15,36 @@
     }
 
     nav {
-      background-color: rgba(0, 0, 0, 0.85);
-      padding: 15px 30px;
-      position: fixed;
-      top: 0;
-      left: 0;
-      width: 100%;
-      z-index: 1000;
       display: flex;
       justify-content: space-between;
       align-items: center;
-      box-sizing: border-box;
-    }
-
-    nav .left, nav .right {
-      display: flex;
-      align-items: center;
+      background-color: #0a0f2c;
+      padding: 15px 30px;
+      font-family: 'Segoe UI', sans-serif;
+      position: sticky;
+      top: 0;
+      z-index: 1000;
     }
 
     nav a {
       color: #ff6f00;
       text-decoration: none;
-      margin: 0 15px;
+      margin: 0 12px;
       font-weight: bold;
-      font-size: 1.1em;
+      transition: color 0.3s;
     }
 
     nav a:hover {
-      text-decoration: underline;
+      color: #ffa726;
+    }
+
+    nav .left a {
+      font-size: 1.2em;
+    }
+
+    nav .right {
+      display: flex;
+      gap: 10px;
     }
 
     .container {
@@ -112,18 +114,18 @@
   </style>
 </head>
 <body>
- <nav>
-  <div class="left">
-    <a href="whoami.html">🏠 Home</a>
-  </div>
-  <div class="right">
-    <a href="whoami.html">Who Am I</a>
-    <a href="progetti.html">Progetti</a>
-    <a href="usa.html">USA</a>
-    <a href="contatti.html">Contatti</a>
-  </div>
-</nav>
-
+  <nav>
+    <div class="left">
+      <a href="index.html">🏠 Home</a>
+    </div>
+    <div class="right">
+      <a href="whoami.html">Who Am I</a>
+      <a href="progetti.html">Progetti</a>
+      <a href="usa.html">USA</a>
+      <a href="curriculum.html">Curriculum</a>
+      <a href="contatti.html">Contatti</a>
+    </div>
+  </nav>
 
   <div class="container">
     <h1>Valuta i progetti</h1>

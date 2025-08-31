@@ -8,40 +8,42 @@
     body {
       margin: 0;
       font-family: 'Segoe UI', sans-serif;
-      background-color: #0a0a23; /* Blu scuro */
-      color: #ff6f00; /* Arancione flash */
+      background-color: #0a0a23;
+      color: #ff6f00;
       overflow-x: hidden;
     }
 
     nav {
-      background-color: rgba(0, 0, 0, 0.85);
-      padding: 15px 30px;
-      position: fixed;
-      top: 0;
-      left: 0;
-      width: 100%;
-      z-index: 1000;
       display: flex;
       justify-content: space-between;
       align-items: center;
-      box-sizing: border-box;
-    }
-
-    nav .left, nav .right {
-      display: flex;
-      align-items: center;
+      background-color: #0a0f2c;
+      padding: 15px 30px;
+      font-family: 'Segoe UI', sans-serif;
+      position: sticky;
+      top: 0;
+      z-index: 1000;
     }
 
     nav a {
       color: #ff6f00;
       text-decoration: none;
-      margin: 0 15px;
+      margin: 0 12px;
       font-weight: bold;
-      font-size: 1.1em;
+      transition: color 0.3s;
     }
 
     nav a:hover {
-      text-decoration: underline;
+      color: #ffa726;
+    }
+
+    nav .left a {
+      font-size: 1.2em;
+    }
+
+    nav .right {
+      display: flex;
+      gap: 10px;
     }
 
     .container {
@@ -61,17 +63,35 @@
       margin-bottom: 30px;
     }
 
-    iframe {
+    .pdf-viewer {
       width: 100%;
       height: 700px;
-      border: none;
-      box-shadow: 0 0 10px rgba(255, 111, 0, 0.5);
-      border-radius: 8px;
       background-color: white;
+      border-radius: 8px;
+      box-shadow: 0 0 10px rgba(255, 111, 0, 0.5);
+      overflow: hidden;
+    }
+
+    .pdf-viewer iframe {
+      width: 100%;
+      height: 100%;
+      border: none;
+    }
+
+    .pdf-viewer p {
+      text-align: center;
+      margin-top: 15px;
+      font-size: 1em;
+    }
+
+    .pdf-viewer a {
+      color: #ff6f00;
+      text-decoration: underline;
+      font-weight: bold;
     }
 
     @media screen and (max-width: 600px) {
-      iframe {
+      .pdf-viewer {
         height: 500px;
       }
 
@@ -99,6 +119,8 @@
     <div class="right">
       <a href="whoami.html">Who Am I</a>
       <a href="progetti.html">Progetti</a>
+      <a href="usa.html">USA</a>
+      <a href="curriculum.html">Curriculum</a>
       <a href="contatti.html">Contatti</a>
     </div>
   </nav>
@@ -106,8 +128,10 @@
   <div class="container">
     <h1>Scopri il mio anno in USA 🇺🇸</h1>
 
-    <!-- Inserisci qui il percorso del PDF -->
-    <iframe src="annousapresentazione.pdf"></iframe>
+    <div class="pdf-viewer">
+      <iframe src="https://drive.google.com/file/d/1OAJGHCFl-ks1dhMIZY11NhxJBFPpHf2c/preview" allow="autoplay"></iframe>
+      <p>📱 Se non riesci a visualizzare il PDF, <a href="https://drive.google.com/file/d/1OAJGHCFl-ks1dhMIZY11NhxJBFPpHf2c/view?usp=sharing" target="_blank">clicca qui per aprirlo</a>.</p>
+    </div>
   </div>
 </body>
 </html>

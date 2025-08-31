@@ -14,34 +14,36 @@
     }
 
     nav {
-      background-color: rgba(0, 0, 0, 0.85);
-      padding: 15px 30px;
-      position: fixed;
-      top: 0;
-      left: 0;
-      width: 100%;
-      z-index: 1000;
       display: flex;
       justify-content: space-between;
       align-items: center;
-      box-sizing: border-box;
-    }
-
-    nav .left, nav .right {
-      display: flex;
-      align-items: center;
+      background-color: #0a0f2c;
+      padding: 15px 30px;
+      font-family: 'Segoe UI', sans-serif;
+      position: sticky;
+      top: 0;
+      z-index: 1000;
     }
 
     nav a {
       color: #ff6f00;
       text-decoration: none;
-      margin: 0 15px;
+      margin: 0 12px;
       font-weight: bold;
-      font-size: 1.1em;
+      transition: color 0.3s;
     }
 
     nav a:hover {
-      text-decoration: underline;
+      color: #ffa726;
+    }
+
+    nav .left a {
+      font-size: 1.2em;
+    }
+
+    nav .right {
+      display: flex;
+      gap: 10px;
     }
 
     canvas {
@@ -49,6 +51,7 @@
       top: 0;
       left: 0;
       z-index: -1;
+      pointer-events: none;
     }
 
     .container {
@@ -133,18 +136,23 @@
       nav a {
         margin: 5px 10px;
       }
+
+      canvas {
+        display: none;
+      }
     }
   </style>
 </head>
 <body>
   <nav>
     <div class="left">
-      <a href="whoami.html">🏠 Home</a>
+      <a href="index.html">🏠 Home</a>
     </div>
     <div class="right">
       <a href="whoami.html">Who Am I</a>
       <a href="progetti.html">Progetti</a>
       <a href="usa.html">USA</a>
+      <a href="curriculum.html">Curriculum</a>
       <a href="contatti.html">Contatti</a>
     </div>
   </nav>
@@ -176,7 +184,6 @@
   </div>
 
   <script>
-    // Canvas interattivo
     const canvas = document.getElementById('interactive-bg');
     const ctx = canvas.getContext('2d');
     canvas.width = window.innerWidth;
@@ -197,9 +204,11 @@
       ctx.fill();
       requestAnimationFrame(draw);
     }
-    draw();
 
-    // Slider e salvataggio
+    if (window.innerWidth > 600) {
+      draw();
+    }
+
     const range = document.getElementById('interestRange');
     const label = document.getElementById('interestLabel');
 
@@ -230,7 +239,6 @@
         });
     });
 
-    // Copia email
     function copyEmail() {
       const email = document.getElementById("email").textContent;
       navigator.clipboard.writeText(email).then(() => {
