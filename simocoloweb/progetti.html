@@ -1,0 +1,222 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Progetti</title>
+  <link rel="stylesheet" href="css/style.css" />
+  <style>
+    body {
+      margin: 0;
+      font-family: 'Segoe UI', sans-serif;
+      background-color: #0a0a23;
+      color: #ff6f00;
+      overflow-x: hidden;
+    }
+
+    nav {
+      background-color: rgba(0, 0, 0, 0.85);
+      padding: 15px 30px;
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      z-index: 1000;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      box-sizing: border-box;
+    }
+
+    nav .left, nav .right {
+      display: flex;
+      align-items: center;
+    }
+
+    nav a {
+      color: #ff6f00;
+      text-decoration: none;
+      margin: 0 15px;
+      font-weight: bold;
+      font-size: 1.1em;
+    }
+
+    nav a:hover {
+      text-decoration: underline;
+    }
+
+    .container {
+      margin-top: 120px;
+      padding: 40px;
+      max-width: 800px;
+      margin-left: auto;
+      margin-right: auto;
+    }
+
+    .azienda-section {
+      margin-bottom: 40px;
+    }
+
+    input[type="text"] {
+      width: 100%;
+      padding: 10px;
+      margin-top: 10px;
+      border-radius: 5px;
+      border: none;
+      font-size: 1em;
+    }
+
+    .project-card {
+      background-color: rgba(255, 255, 255, 0.05);
+      border-radius: 10px;
+      box-shadow: 0 0 20px rgba(255, 111, 0, 0.3);
+      padding: 25px;
+      margin-bottom: 40px;
+    }
+
+    .project-title {
+      font-size: 1.6em;
+      font-weight: bold;
+      margin-bottom: 10px;
+      color: #ff6f00;
+    }
+
+    .project-desc {
+      font-size: 1em;
+      margin-bottom: 20px;
+      color: #ffd699;
+    }
+
+    .stars span {
+      font-size: 1.8em;
+      cursor: pointer;
+      color: #ffcc00;
+      margin-right: 5px;
+    }
+
+    .btn {
+      margin-top: 20px;
+      padding: 10px 20px;
+      background-color: #ff6f00;
+      color: white;
+      border: none;
+      border-radius: 25px;
+      font-weight: bold;
+      cursor: pointer;
+    }
+
+    .btn:hover {
+      background-color: white;
+      color: #ff6f00;
+    }
+  </style>
+</head>
+<body>
+ <nav>
+  <div class="left">
+    <a href="whoami.html">🏠 Home</a>
+  </div>
+  <div class="right">
+    <a href="whoami.html">Who Am I</a>
+    <a href="progetti.html">Progetti</a>
+    <a href="usa.html">USA</a>
+    <a href="contatti.html">Contatti</a>
+  </div>
+</nav>
+
+
+  <div class="container">
+    <h1>Valuta i progetti</h1>
+
+    <div class="azienda-section">
+      <label for="azienda">Nome azienda:</label>
+      <input type="text" id="azienda" placeholder="Inserisci il nome dell'azienda" />
+    </div>
+
+    <!-- Progetto 1 -->
+    <div class="project-card">
+      <div class="project-title">Smart Bin</div>
+      <div class="project-desc">Un cestino intelligente che riconosce i rifiuti e li smista automaticamente per migliorare la raccolta differenziata.</div>
+      <label>Valutazione:</label>
+      <div class="stars">
+        <span data-value="1">☆</span>
+        <span data-value="2">☆</span>
+        <span data-value="3">☆</span>
+        <span data-value="4">☆</span>
+        <span data-value="5">☆</span>
+      </div>
+      <button class="btn">Invia valutazione</button>
+    </div>
+
+    <!-- Progetto 2 -->
+    <div class="project-card">
+      <div class="project-title">EcoCharge</div>
+      <div class="project-desc">Una stazione di ricarica solare portatile per dispositivi mobili, pensata per ambienti outdoor e emergenze.</div>
+      <label>Valutazione:</label>
+      <div class="stars">
+        <span data-value="1">☆</span>
+        <span data-value="2">☆</span>
+        <span data-value="3">☆</span>
+        <span data-value="4">☆</span>
+        <span data-value="5">☆</span>
+      </div>
+      <button class="btn">Invia valutazione</button>
+    </div>
+
+    <!-- Progetto 3 -->
+    <div class="project-card">
+      <div class="project-title">FoodSaver App</div>
+      <div class="project-desc">Un'app che segnala cibo in scadenza nei supermercati e ristoranti per ridurre gli sprechi alimentari.</div>
+      <label>Valutazione:</label>
+      <div class="stars">
+        <span data-value="1">☆</span>
+        <span data-value="2">☆</span>
+        <span data-value="3">☆</span>
+        <span data-value="4">☆</span>
+        <span data-value="5">☆</span>
+      </div>
+      <button class="btn">Invia valutazione</button>
+    </div>
+  </div>
+
+  <script>
+    const scriptURL = "https://script.google.com/macros/s/AKfycbyd-w4ny4CS_g08RWTMk2CbJLcSI948rSc1fKsxiV4IhpJvbG7Vz61mNlgdLPZPnkF-yA/exec";
+
+    document.querySelectorAll('.project-card').forEach(card => {
+      const stars = card.querySelectorAll('.stars span');
+      let valutazione = 0;
+
+      stars.forEach(stella => {
+        stella.addEventListener('click', () => {
+          valutazione = parseInt(stella.getAttribute('data-value'));
+          stars.forEach(s => {
+            s.textContent = parseInt(s.getAttribute('data-value')) <= valutazione ? '⭐' : '☆';
+          });
+        });
+      });
+
+      const btn = card.querySelector('.btn');
+      btn.addEventListener('click', () => {
+        const nomeAzienda = document.getElementById('azienda').value.trim();
+        const progetto = card.querySelector('.project-title').textContent.trim();
+
+        if (!nomeAzienda || valutazione === 0) {
+          alert("Inserisci il nome dell'azienda e seleziona una valutazione.");
+          return;
+        }
+
+        const url = `${scriptURL}?azienda=${encodeURIComponent(nomeAzienda)}&progetto=${encodeURIComponent(progetto)}&valutazione=${valutazione}`;
+
+        fetch(url)
+          .then(response => response.text())
+          .then(data => {
+            alert(`Valutazione per "${progetto}" inviata con successo!`);
+          })
+          .catch(error => {
+            console.error("Errore nel salvataggio:", error);
+          });
+      });
+    });
+  </script>
+</body>
+</html>
